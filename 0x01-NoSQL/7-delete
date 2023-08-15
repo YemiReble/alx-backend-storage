@@ -1,0 +1,2 @@
+// Remove Data from a collection
+db.school.remove({"name" : "Holberton school"})
