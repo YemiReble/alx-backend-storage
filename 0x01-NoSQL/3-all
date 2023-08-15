@@ -1,0 +1,2 @@
+// This mongo script list all data in collection "school"
+db.school.find().pretty() 
