@@ -4,6 +4,8 @@
 
 import uuid
 import redis
+from typing import Callable
+# from collections.abc import Callable
 
 
 class Cache():
@@ -18,3 +20,15 @@ class Cache():
         key = uuid.uuid4().hex
         self._redis.set(key, data)
         return key
+
+    def get(self, key: str, fn: Callable[[], str]) -> str:
+        """ Get method """
+        self._redis.get(key)
+
+    def get_str(self, key: str) -> str:
+        """ For getting cache strings """
+        self.get(key, str)
+
+    def get_int(self, key: int) -> int:
+        """ For geting cache integer """
+        self.get(key, int)
