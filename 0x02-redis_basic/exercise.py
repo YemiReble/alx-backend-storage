@@ -5,8 +5,17 @@
 import uuid
 import redis
 from typing import Callable
+from functools import wraps
 # from collections.abc import Callable
 
+
+
+def count_calls(fn: Callable[[], str]) -> Callable[[], str]:
+    """ Function Decorator """
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        return fn(*args, **kwargs)
+    return wrapper
 
 class Cache():
     """ A Cache Class """
@@ -21,6 +30,7 @@ class Cache():
         self._redis.set(key, data)
         return key
 
+    @count_calls
     def get(self, key: str, fn: Callable[[], str]) -> str:
         """ Get method """
         self._redis.get(key)
