@@ -12,4 +12,4 @@ def insert_school(mongo_collection, **kwargs):
     """ A function that inserts a new document in a
     Database colletion
     """
-    return mongo_collection.insert_one(kwargs)
+    return mongo_collection.insert(kwargs)
